@@ -19,4 +19,24 @@ class ApplicationTest {
             assertEquals("Hello World!", bodyAsText())
         }
     }
+    @Test
+    fun testJsonJackson() = testApplication {
+        application {
+            configureRouting()
+        }
+        client.get("/message").apply {
+            assertEquals(HttpStatusCode.OK, status)
+            assertEquals("MESSAGE", bodyAsText())
+        }
+    }
+    @Test
+    fun testEmptyUser() = testApplication {
+        application {
+            configureRouting()
+        }
+        client.get("/user").apply {
+            assertEquals(HttpStatusCode.OK, status)
+            assertEquals("Empty login", bodyAsText())
+        }
+    }
 }
