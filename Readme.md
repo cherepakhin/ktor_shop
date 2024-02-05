@@ -10,7 +10,7 @@ chmod +x gradlew
 Ручные тесты:<br/>
 
 ````shell
-~/prog/kotlin/ktor/ktor-shop$ http  :8080/
+~/prog/kotlin/ktor/ktor-shop$ http :9080/
 HTTP/1.1 200 OK
 Connection: keep-alive
 Content-Length: 12
@@ -20,7 +20,7 @@ Hello World!
 ````
 
 ````shell
-ktor-shop$ http :8080/json/jackson
+ktor-shop$ http :9080/json/jackson
 HTTP/1.1 200 OK
 Connection: keep-alive
 Content-Type: application/json
@@ -32,7 +32,7 @@ transfer-encoding: chunked
 ````
 
 ````shell
-ktor-shop$ http :8080/html-dsl
+ktor-shop$ http :9080/html-dsl
 HTTP/1.1 200 OK
 Connection: keep-alive
 Content-Length: 258
@@ -59,3 +59,16 @@ Content-Type: text/html; charset=UTF-8
 ````
 
 ![html-dsl](doc/html-dsl.png)
+
+````shell
+$ http :9080/json/product
+HTTP/1.1 200 OK
+Connection: keep-alive
+Content-Type: application/json
+transfer-encoding: chunked
+
+{
+"id": 1,
+"name": "Name1"
+}
+````

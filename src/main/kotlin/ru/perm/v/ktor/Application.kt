@@ -8,7 +8,7 @@ import ru.perm.v.ktor.plugins.configureSerialization
 import ru.perm.v.ktor.plugins.configureTemplating
 
 fun main() {
-    embeddedServer(Netty, port = 8080, host = "0.0.0.0", module = Application::module)
+    embeddedServer(Netty, port = 9080, host = "0.0.0.0", module = Application::module)
         .start(wait = true)
 }
 
