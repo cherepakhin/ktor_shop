@@ -25,7 +25,7 @@ repositories {
 dependencies {
     implementation("io.ktor:ktor-server-core-jvm")
     implementation("io.ktor:ktor-server-html-builder-jvm")
-    implementation("org.jetbrains.kotlinx:kotlinx-html:0.11.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-html")
     implementation("io.ktor:ktor-server-content-negotiation-jvm")
     implementation("io.ktor:ktor-serialization-jackson-jvm")
     implementation("io.ktor:ktor-server-netty-jvm")
@@ -33,3 +33,4 @@ dependencies {
     testImplementation("io.ktor:ktor-server-tests-jvm")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version")
 }
+
