@@ -1,9 +1,7 @@
 package ru.perm.v.ktor
 
 import org.junit.Test
-import java.util.ArrayList
 import kotlin.test.assertEquals
-import kotlin.test.assertNotNull
 
 class PairsTest {
     open class MyPairs(vararg values: kotlin.Pair<kotlin.Int, kotlin.String>) {
@@ -35,7 +33,7 @@ class PairsTest {
 
         val pairInternalMutableList = myPairs.internalMutableList.get(0)
         assertEquals(50 to "VALUE50", pairInternalMutableList)
-        assertEquals(50,pairInternalMutableList.first)
-        assertEquals("VALUE50",pairInternalMutableList.second)
+        assertEquals(50, pairInternalMutableList.first)
+        assertEquals("VALUE50", pairInternalMutableList.second)
     }
 }
