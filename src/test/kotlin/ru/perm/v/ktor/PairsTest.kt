@@ -1,13 +1,19 @@
 package ru.perm.v.ktor
 
 import org.junit.Test
+import java.util.ArrayList
 import kotlin.test.assertEquals
+import kotlin.test.assertNotNull
 
 class PairsTest {
     open class MyPairs(vararg values: kotlin.Pair<kotlin.Int, kotlin.String>) {
         open var vals = values.asList()
-        fun put(p2: Pair<Int, String>) {
-            vals = vals.plus(p2)
+
+        //        val mutableList = MutableList<Pair<Int, String>>()
+        open var internalMutableList = ArrayList<Pair<kotlin.Int, kotlin.String>>()
+        fun putToInternalMutableList(p2: Pair<Int, String>) {
+            vals.plus(p2)
+            internalMutableList.add(p2)
         }
 
     }
@@ -24,9 +30,10 @@ class PairsTest {
         assertEquals(20 to "VALUE20", myPairs.vals.get(1))
         assertEquals(30 to "VALUE30", myPairs.vals.get(2))
 
-        val p4 = 4 to "VALUE4"
-        myPairs.put(p4)
-        assertEquals(4, myPairs.vals.size)
-        assertEquals(p4, myPairs.vals.get(3))
+        val p5 = 50 to "VALUE50"
+        myPairs.putToInternalMutableList(p5)
+        val pair0 = myPairs.internalMutableList.get(0)
+        val f= pair0.first
+        assertEquals(50 to "VALUE50", pair0)
     }
 }
