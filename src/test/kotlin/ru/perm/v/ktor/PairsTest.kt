@@ -101,8 +101,27 @@ class PairsTest {
 
         val myPairs = MyPairs(pair1, pair2, 30 to "VALUE30", 20 to "VALUE20")
 
-        val concatSecondsGreat10 = myPairs.vals.filter { it.first > 10 }.map { it.second }.joinToString("")
+        val concatSecondsGreat10 = myPairs.vals.filter { it.first > 10 }
+            .map { it.second }.joinToString("")
         assertEquals("VALUE20VALUE30VALUE20", concatSecondsGreat10)
+
+        val resultBuilder = StringBuilder()
+        myPairs.vals.filter { it.first > 10 }
+            .map { it.second }.joinTo(resultBuilder,"-")
+        assertEquals("VALUE20-VALUE30-VALUE20", resultBuilder.toString())
+    }
+
+    @Test
+    fun concatWithResultBuilder() {
+        val pair1 = (10 to "VALUE10")
+        val pair2 = (20 to "VALUE20")
+
+        val myPairs = MyPairs(pair1, pair2, 30 to "VALUE30", 20 to "VALUE20")
+
+        val resultBuilder = StringBuilder()
+        myPairs.vals.filter { it.first > 10 }
+            .map { it.second }.joinTo(resultBuilder,"-")
+        assertEquals("VALUE20-VALUE30-VALUE20", resultBuilder.toString())
     }
 
 }
