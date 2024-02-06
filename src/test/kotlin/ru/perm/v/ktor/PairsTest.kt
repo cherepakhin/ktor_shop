@@ -29,6 +29,7 @@ class PairsTest {
             internalMutableList.add(p2)
         }
     }
+
     @Test
     fun putPair() {
         val myPairs = InternalMyPairs()
@@ -50,10 +51,22 @@ class PairsTest {
 
         assertEquals(4, myPairs.vals.size)
 
-        val found= myPairs.vals.filter { it.first == 10  }.toList()
+        val found = myPairs.vals.filter { it.first == 10 }.toList()
 
         assertEquals(1, found.size)
         assertEquals((10 to "VALUE10"), found[0])
     }
 
+    @Test
+    fun mapPairTest() {
+        val pair1 = (10 to "VALUE10")
+        val pair2 = (20 to "VALUE20")
+
+        val myPairs = MyPairs(pair1, pair2, 30 to "VALUE30", 20 to "VALUE20")
+
+        val found = myPairs.vals.map { it.first }.toList()
+
+        assertEquals(4, found.size)
+        assertEquals(listOf(10, 20, 30, 20), found)
+    }
 }
