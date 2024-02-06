@@ -1,0 +1,13 @@
+paths:
+  /ui/:
+    description: "The main page"
+    responses:
+      "200":
+        description: "OK"
+        content:
+          text/plain:
+            schema:
+              type: "string"
+            examples:
+              Example#1:
+                value: "Hello World"
