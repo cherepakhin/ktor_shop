@@ -94,4 +94,15 @@ class PairsTest {
         assertEquals(30, sum)
     }
 
+    @Test
+    fun concatFilterAndSumPairTest() {
+        val pair1 = (10 to "VALUE10")
+        val pair2 = (20 to "VALUE20")
+
+        val myPairs = MyPairs(pair1, pair2, 30 to "VALUE30", 20 to "VALUE20")
+
+        val concatSecondsGreat10 = myPairs.vals.filter { it.first > 10 }.map { it.second }.joinToString("")
+        assertEquals("VALUE20VALUE30VALUE20", concatSecondsGreat10)
+    }
+
 }
