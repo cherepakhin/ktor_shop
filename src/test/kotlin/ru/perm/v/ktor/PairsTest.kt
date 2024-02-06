@@ -8,14 +8,6 @@ class PairsTest {
         open val vals = values.asList()
     }
 
-    open class InternalMyPairs() {
-
-        open var internalMutableList = ArrayList<Pair<kotlin.Int, kotlin.String>>()
-        fun putToMutableList(p2: Pair<Int, String>) {
-            internalMutableList.add(p2)
-        }
-    }
-
     @Test
     fun pairTest() {
         val pair1 = (10 to "VALUE10")
@@ -30,6 +22,13 @@ class PairsTest {
 
     }
 
+    open class InternalMyPairs() {
+
+        open var internalMutableList = ArrayList<Pair<kotlin.Int, kotlin.String>>()
+        fun putToMutableList(p2: Pair<Int, String>) {
+            internalMutableList.add(p2)
+        }
+    }
     @Test
     fun putPair() {
         val myPairs = InternalMyPairs()
