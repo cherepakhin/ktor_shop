@@ -121,6 +121,7 @@ class PairsTest {
         val resultBuilder = StringBuilder()
         myPairs.vals.filter { it.first > 10 }
             .map { it.second }.joinTo(resultBuilder,"-")
+
         assertEquals("VALUE20-VALUE30-VALUE20", resultBuilder.toString())
     }
 
