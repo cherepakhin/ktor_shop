@@ -89,7 +89,7 @@ class PairsTest {
 
         val myPairs = MyPairs(pair1, pair2, 30 to "VALUE30", 20 to "VALUE20")
 
-        val sum = myPairs.vals.filter { it.first>20 }.map { it.first }.sum()
+        val sum = myPairs.vals.filter { it.first > 20 }.map { it.first }.sum()
 
         assertEquals(30, sum)
     }
