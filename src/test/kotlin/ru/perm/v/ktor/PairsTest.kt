@@ -5,15 +5,15 @@ import kotlin.test.assertEquals
 
 class PairsTest {
     open class MyPairs(vararg values: kotlin.Pair<kotlin.Int, kotlin.String>) {
-        open var vals = values.asList()
+        open val vals = values.asList()
+    }
 
-        //        val mutableList = MutableList<Pair<Int, String>>()
+    open class InternalMyPairs() {
+
         open var internalMutableList = ArrayList<Pair<kotlin.Int, kotlin.String>>()
-        fun putToInternalMutableList(p2: Pair<Int, String>) {
-            vals.plus(p2)
+        fun putToMutableList(p2: Pair<Int, String>) {
             internalMutableList.add(p2)
         }
-
     }
 
     @Test
@@ -28,12 +28,17 @@ class PairsTest {
         assertEquals(20 to "VALUE20", myPairs.vals.get(1))
         assertEquals(30 to "VALUE30", myPairs.vals.get(2))
 
-        val p5 = 50 to "VALUE50"
-        myPairs.putToInternalMutableList(p5)
+    }
 
-        val pairInternalMutableList = myPairs.internalMutableList.get(0)
-        assertEquals(50 to "VALUE50", pairInternalMutableList)
-        assertEquals(50, pairInternalMutableList.first)
-        assertEquals("VALUE50", pairInternalMutableList.second)
+    @Test
+    fun putPair() {
+        val myPairs = InternalMyPairs()
+        val p5 = 50 to "VALUE50"
+        myPairs.putToMutableList(p5)
+
+        val pair0FromInternalMutableList = myPairs.internalMutableList.get(0)
+        assertEquals(50 to "VALUE50", pair0FromInternalMutableList)
+        assertEquals(50, pair0FromInternalMutableList.first)
+        assertEquals("VALUE50", pair0FromInternalMutableList.second)
     }
 }
