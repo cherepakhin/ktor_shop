@@ -32,8 +32,10 @@ class PairsTest {
 
         val p5 = 50 to "VALUE50"
         myPairs.putToInternalMutableList(p5)
-        val pair0 = myPairs.internalMutableList.get(0)
-        val f= pair0.first
-        assertEquals(50 to "VALUE50", pair0)
+
+        val pairInternalMutableList = myPairs.internalMutableList.get(0)
+        assertEquals(50 to "VALUE50", pairInternalMutableList)
+        assertEquals(50,pairInternalMutableList.first)
+        assertEquals("VALUE50",pairInternalMutableList.second)
     }
 }
