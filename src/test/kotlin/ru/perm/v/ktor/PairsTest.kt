@@ -81,4 +81,17 @@ class PairsTest {
 
         assertEquals(80, sum)
     }
+
+    @Test
+    fun calcFilterAndSumPairTest() {
+        val pair1 = (10 to "VALUE10")
+        val pair2 = (20 to "VALUE20")
+
+        val myPairs = MyPairs(pair1, pair2, 30 to "VALUE30", 20 to "VALUE20")
+
+        val sum = myPairs.vals.filter { it.first>20 }.map { it.first }.sum()
+
+        assertEquals(30, sum)
+    }
+
 }
