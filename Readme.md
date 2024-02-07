@@ -44,3 +44,5 @@ transfer-encoding: chunked
     "name": "Name1"
 }
 ````
+
+[Интеграционные тесты https://github.com/cherepakhin/ktor_shop_restassured_test](https://github.com/cherepakhin/ktor_shop_restassured_test)
