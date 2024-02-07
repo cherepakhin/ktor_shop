@@ -107,7 +107,7 @@ class PairsTest {
 
         val resultBuilder = StringBuilder()
         myPairs.vals.filter { it.first > 10 }
-            .map { it.second }.joinTo(resultBuilder,"-")
+            .map { it.second }.joinTo(resultBuilder, "-")
         assertEquals("VALUE20-VALUE30-VALUE20", resultBuilder.toString())
     }
 
@@ -121,13 +121,33 @@ class PairsTest {
             pair2,
             30 to "VALUE30",
             20 to "VALUE20",
-            50 to "VALUE50")
+            50 to "VALUE50"
+        )
 
         val resultBuilder = StringBuilder()
         myPairs.vals.filter { it.first > 20 }
-            .map { it.second }.joinTo(resultBuilder,"-")
+            .map { it.second }.joinTo(resultBuilder, "-")
 
         assertEquals("VALUE30-VALUE50", resultBuilder.toString())
+
+        val listPairs = myPairs.vals.filter { it.first > 20 }
+            .map { it.second }.toList()
+        assertEquals(listOf("VALUE30", "VALUE50"), listPairs)
     }
 
+    @Test
+    fun convertPairsToList() {
+        val listPairs = listOf(
+            20 to "VALUE20",
+            30 to "VALUE30",
+            40 to "VALUE40",
+            45 to "VALUE45",
+            50 to "VALUE20",
+        )
+
+        val filteredList = listPairs
+            .filter { it.first > 30 && it.first < 50 }.map { it.first }.toList()
+
+        assertEquals(listOf(40, 45), filteredList)
+    }
 }
