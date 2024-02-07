@@ -17,7 +17,7 @@ fun Application.configureShopRouting() {
                 call.respond(HttpStatusCode(503, "ok"), "EMPTY MESSAGE")
             } else {
                 Logger.getGlobal().fine(format("ECHO MESSAGE: %s", message))
-                call.respondText(message)
+                call.run { respondText(message) }
             }
         }
         get("/") {
@@ -38,7 +38,7 @@ fun Application.configureShopRouting() {
         get("/product/{id}") {
             val paramId = call.parameters["id"]
             val id = (paramId ?: "-1").toLong()
-            call.respond(ProductDto(id, "name"))
+            call.respond(ProductDto(id, "name" + id))
         }
     }
 }

@@ -17,7 +17,7 @@ class RoutingTest {
         }
         environment {
             config = MapApplicationConfig(
-                "ktor.deployment.port" to "80",
+                "ktor.deployment.port" to "8080",
             )
         }
 

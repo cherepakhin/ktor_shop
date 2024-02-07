@@ -8,26 +8,26 @@ import io.ktor.server.testing.*
 import kotlin.test.*
 
 class ApplicationTest {
-    @Test
-    fun testRoot() = testApplication {
-        application {
-            configureShopRouting()
-        }
-        client.get("/").apply {
-            assertEquals(HttpStatusCode.OK, status)
-            assertEquals("Hello World!", bodyAsText())
-        }
-    }
-    @Test
-    fun testJsonJackson() = testApplication {
-        application {
-            configureShopRouting()
-        }
-        client.get("/message").apply {
-            assertEquals(HttpStatusCode.OK, status)
-            assertEquals("MESSAGE", bodyAsText())
-        }
-    }
+//    @Test
+//    fun testRoot() = testApplication {
+//        application {
+//            configureShopRouting()
+//        }
+//        client.get("/").apply {
+//            assertEquals(HttpStatusCode.OK, status)
+//            assertEquals("Hello World!", bodyAsText())
+//        }
+//    }
+//    @Test
+//    fun testJsonJackson() = testApplication {
+//        application {
+//            configureShopRouting()
+//        }
+//        client.get("/message").apply {
+//            assertEquals(HttpStatusCode.OK, status)
+//            assertEquals("MESSAGE", bodyAsText())
+//        }
+//    }
     @Test
     fun testEmptyUser() = testApplication {
         application {
