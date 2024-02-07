@@ -22,7 +22,7 @@ fun Application.configureSerialization() {
             call.respond(mapOf("hello" to "world"))
         }
         get("/json/product") {
-            call.respond(ProductDto(1L,"Name1"))
+            call.respond(ProductDto(1L, "Name1"))
         }
     }
 }

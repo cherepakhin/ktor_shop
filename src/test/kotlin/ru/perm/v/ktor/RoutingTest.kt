@@ -6,20 +6,16 @@ import io.ktor.http.*
 import io.ktor.server.config.*
 import io.ktor.server.testing.*
 import junit.framework.TestCase.assertEquals
-import ru.perm.v.ktor.plugins.configureRouting
+import ru.perm.v.ktor.plugins.configureShopRouting
 import kotlin.test.Test
 
 class RoutingTest {
     @Test
     fun testRoot() = testApplication {
         application {
-            configureRouting()
+            configureShopRouting()
         }
         environment {
-//            config = MapApplicationConfig(
-//                "ktor.deployment.port" to "80",
-//            )
-//            MapApplicationConfig.
             config = MapApplicationConfig(
                 "ktor.deployment.port" to "80",
             )

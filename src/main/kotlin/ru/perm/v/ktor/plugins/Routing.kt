@@ -5,11 +5,20 @@ import io.ktor.server.application.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import ru.perm.v.ktor.dto.ProductDto
+import java.lang.String.format
+import java.util.logging.Logger
 
-fun Application.configureRouting() {
+fun Application.configureShopRouting() {
     routing {
-        get("/message") {
-            call.respond(HttpStatusCode(200,"ok"), "MESSAGE" )
+        get("/echo/{message}") {
+            val message = call.parameters["message"]
+            if (message == null || message == "") {
+                Logger.getGlobal().warning("EMPTY MESSAGE")
+                call.respond(HttpStatusCode(503, "ok"), "EMPTY MESSAGE")
+            } else {
+                Logger.getGlobal().fine(format("ECHO MESSAGE: %s", message))
+                call.respondText(message)
+            }
         }
         get("/") {
             call.respondText("Hello World!")

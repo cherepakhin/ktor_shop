@@ -1,0 +1,6 @@
+ktor:
+  deployment:
+    port: 9080
+  application:
+    modules:
+      - ru.perm.v.ktor.ApplicationKt.module
