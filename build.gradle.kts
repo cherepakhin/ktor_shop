@@ -1,15 +1,20 @@
+import org.gradle.api.publish.PublishingExtension
 
 val ktor_version: String by project
 val kotlin_version: String by project
 val logback_version: String by project
 
-plugins {
-    kotlin("jvm") version "1.9.22"
-    id("io.ktor.plugin") version "2.3.7"
-}
-
 group = "ru.perm.v.ktor_shop"
 version = "0.0.1"
+
+plugins {
+    `maven-publish`
+    kotlin("jvm") version "1.9.22"
+    id("io.ktor.plugin") version "2.3.7"
+    java
+    idea
+    application
+}
 
 application {
     mainClass.set("ru.perm.v.ktor.ApplicationKt")
@@ -18,9 +23,24 @@ application {
     applicationDefaultJvmArgs = listOf("-Dio.ktor.development=$isDevelopment")
 }
 
-
 repositories {
     mavenCentral()
+    mavenLocal()
+    maven {
+        url = uri("http://v.perm.ru:8082/repository/ru.perm.v")
+        isAllowInsecureProtocol = true
+        credentials {
+            username = "admin"
+            password = "pass"
+
+// export NEXUS_CI_USER=admin
+// echo $NEXUS_CI_USER
+//            username = System.getenv("NEXUS_CRED_USR") ?: extra.properties["nexus-ci-username"] as String?
+// export NEXUS_CI_PASS=pass
+// echo $NEXUS_CI_PASS
+//            password = System.getenv("NEXUS_CRED_PASS") ?: extra.properties["nexus-ci-password"] as String?
+        }
+    }
 }
 
 dependencies {
@@ -35,3 +55,50 @@ dependencies {
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version")
 }
 
+ktor {
+    fatJar {
+        archiveFileName.set("ktor_shop.jar")
+    }
+
+}
+
+buildscript {
+    var kotlinVersion: String? by extra; kotlinVersion = "1.1.51"
+
+    repositories {
+        mavenCentral()
+        google()
+        gradlePluginPortal()
+    }
+
+    dependencies {
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion")
+    }
+
+}
+
+configure<PublishingExtension> {
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("mavenJava") {
+            artifactId = "ktor-shop"
+            groupId = "ru.perm.v.ktor_shop"
+            version = "0.0.1"
+        }
+        repositories {
+            maven {
+                url = uri("http://v.perm.ru:8082/repository/ru.perm.v/")
+                isAllowInsecureProtocol = true
+                //  publish в nexus "./gradlew publish" из ноута и Jenkins проходит
+                // export NEXUS_CRED_USR=admin
+                // echo $NEXUS_CRED_USR
+                credentials {
+                    username = System.getenv("NEXUS_CRED_USR")
+                    password = System.getenv("NEXUS_CRED_PSW")
+                }
+            }
+        }
+    }
+}

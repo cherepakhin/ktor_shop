@@ -33,7 +33,7 @@ fun Application.configureShopRouting() {
             if (call.parameters["login"] == "")
                 call.respondText("Empty login")
             else
-                call.respond("Hello," + call.parameters["login"])
+                call.respond("Hello, " + call.parameters["login"])
         }
         get("/product/{id}") {
             val paramId = call.parameters["id"]
