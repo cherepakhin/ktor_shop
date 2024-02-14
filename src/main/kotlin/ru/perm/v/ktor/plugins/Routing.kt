@@ -38,7 +38,7 @@ fun Application.configureShopRouting() {
         get("/product/{id}") {
             val paramId = call.parameters["id"]
             val id = (paramId ?: "-1").toLong()
-            call.respond(ProductDto(id, "name" + id))
+            call.respond(ProductDto(id, "name$id"))
         }
     }
 }
