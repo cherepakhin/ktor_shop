@@ -9,9 +9,7 @@ import io.ktor.server.routing.*
 import ru.perm.v.ktor.dto.ProductDto
 
 fun Application.configureSerialization() {
-    logStart() {
-        println("Start")
-    }
+    logStart()
     install(ContentNegotiation) {
         jackson {
             enable(SerializationFeature.INDENT_OUTPUT)
@@ -27,6 +25,6 @@ fun Application.configureSerialization() {
     }
 }
 
-fun logStart(function: () -> Unit) {
+fun logStart() {
     println("logStart")
 }
