@@ -11,6 +11,23 @@ import kotlin.test.Test
 
 class RoutingTest {
     @Test
+    fun testUrlEcho() = testApplication {
+        application {
+            configureShopRouting()
+        }
+        environment {
+            config = MapApplicationConfig(
+                "ktor.deployment.port" to "8080",
+            )
+        }
+
+        val response = client.get("/echo/MESSAGE")
+
+        assertEquals(HttpStatusCode.OK, response.status)
+        assertEquals("MESSAGE", response.bodyAsText())
+    }
+
+    @Test
     fun testRoot() = testApplication {
         application {
             configureShopRouting()
@@ -21,9 +38,26 @@ class RoutingTest {
             )
         }
 
-        val response = client.get("/message")
+        val response = client.get("/")
 
         assertEquals(HttpStatusCode.OK, response.status)
-        assertEquals("MESSAGE", response.bodyAsText())
+        assertEquals("From root", response.bodyAsText())
+    }
+
+    @Test
+    fun testUrlUser() = testApplication {
+        application {
+            configureShopRouting()
+        }
+        environment {
+            config = MapApplicationConfig(
+                "ktor.deployment.port" to "8080",
+            )
+        }
+
+        val response = client.get("/user")
+
+        assertEquals(HttpStatusCode.OK, response.status)
+        assertEquals("Empty login", response.bodyAsText())
     }
 }

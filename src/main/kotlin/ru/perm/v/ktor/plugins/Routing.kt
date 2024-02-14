@@ -21,7 +21,7 @@ fun Application.configureShopRouting() {
             }
         }
         get("/") {
-            call.respondText("Hello World!")
+            call.respondText("From root")
         }
         get("/user") {
             call.respondText("Empty login")
