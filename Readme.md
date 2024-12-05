@@ -56,4 +56,12 @@ Publish to Nexus:<br/>
 ````shell
 ./gradlew publish
 ````
-Версия будет установлена из build.gradle.kts version = "????". 
+Версия будет установлена из build.gradle.kts version = "????".
+
+Показать git репозитории:
+
+````shell
+$ git remote -v
+origin  https://github.com/cherepakhin/ktor_shop.git (fetch)
+origin  https://github.com/cherepakhin/ktor_shop.git (push)
+````
