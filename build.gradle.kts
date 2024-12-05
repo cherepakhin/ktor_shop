@@ -2,10 +2,10 @@ import org.gradle.api.publish.PublishingExtension
 
 val ktor_version: String by project
 val kotlin_version: String by project
-val logback_version: String by project
+//val logback_version: String by project
 
 group = "ru.perm.v.ktor_shop"
-version = "0.0.1"
+version = "0.0.3"
 
 plugins {
     `maven-publish`
@@ -50,9 +50,10 @@ dependencies {
     implementation("io.ktor:ktor-server-content-negotiation-jvm")
     implementation("io.ktor:ktor-serialization-jackson-jvm")
     implementation("io.ktor:ktor-server-netty-jvm")
-    implementation("ch.qos.logback:logback-classic:$logback_version")
+//    implementation("ch.qos.logback:logback-classic:$logback_version")
     testImplementation("io.ktor:ktor-server-tests-jvm")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version")
+    implementation(kotlin("stdlib-jdk8"))
 }
 
 ktor {
@@ -81,24 +82,29 @@ configure<PublishingExtension> {
 }
 
 publishing {
+    repositories {
+        maven {
+            url = uri("http://v.perm.ru:8081/repository/ru.perm.v/")
+            isAllowInsecureProtocol = true
+            //  publish в nexus "./gradlew publish" из ноута и Jenkins проходит
+            // export NEXUS_CRED_USR=admin
+            // echo $NEXUS_CRED_USR
+//TODO: import external shell env not work!
+//            username = System.getenv("NEXUS_CRED_USR")
+//            password = System.getenv("NEXUS_CRED_PSW")
+            credentials {
+                username = System.getenv("NEXUS_CRED_USR")
+                password = System.getenv("NEXUS_CRED_PSW")
+            }
+        }
+    }
     publications {
         create<MavenPublication>("mavenJava") {
             artifactId = "ktor-shop"
             groupId = "ru.perm.v.ktor_shop"
-            version = "0.0.1"
-        }
-        repositories {
-            maven {
-                url = uri("http://v.perm.ru:8082/repository/ru.perm.v/")
-                isAllowInsecureProtocol = true
-                //  publish в nexus "./gradlew publish" из ноута и Jenkins проходит
-                // export NEXUS_CRED_USR=admin
-                // echo $NEXUS_CRED_USR
-                credentials {
-                    username = System.getenv("NEXUS_CRED_USR")
-                    password = System.getenv("NEXUS_CRED_PSW")
-                }
-            }
         }
     }
+}
+kotlin {
+    jvmToolchain(8)
 }
