@@ -2,7 +2,7 @@ rootProject.name = "ru.perm.v.ktor_shop"
 
 pluginManagement {
     repositories {
-        jcenter()
+        mavenCentral()
         gradlePluginPortal()
     }
     plugins {
