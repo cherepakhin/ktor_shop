@@ -8,11 +8,19 @@ $ echo $JAVA_HOME
 Генерация заготовки проекта:<br/>
 [ktor-sample](https://start.ktor.io/#/final?name=ktor-sample&website=example.com&artifact=com.example.ktor-sample&kotlinVersion=1.9.22&ktorVersion=2.3.7&buildSystem=GRADLE_KTS&engine=NETTY&configurationIn=CODE&addSampleCode=true&plugins=routing%2Chtml-dsl%2Ccontent-negotiation%2Cktor-jackson)
 
+Сборка:<br/>
+````shell
+./gradlew build
+````
+
 Запуск:<br/>
 ````shell
-chmod +x gradlew
-./gradlew build
 ./gradlew run
+````
+или (после ./gradlew build)
+
+````shell
+java -jar build/libs/ktor_shop.jar
 ````
 
 Ручные тесты:<br/>
