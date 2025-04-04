@@ -75,6 +75,7 @@ Starting 12th build in daemon [uptime: 16 mins 8.271 secs, performance: 100%, GC
 Using 4 worker leases.
 ````
 
+Подключен Allure Report. Для просмотра отчета открыть build/reports/tests/test/index.html .
 
 Publish to Nexus:<br/>
 
