@@ -2,7 +2,7 @@ import org.gradle.api.publish.PublishingExtension
 
 val ktor_version: String by project
 val kotlin_version: String by project
-//val logback_version: String by project
+val logback_version: String = "1.4.14"
 
 group = "ru.perm.v.ktor_shop"
 version = "0.0.3"
@@ -50,7 +50,7 @@ dependencies {
     implementation("io.ktor:ktor-server-content-negotiation-jvm")
     implementation("io.ktor:ktor-serialization-jackson-jvm")
     implementation("io.ktor:ktor-server-netty-jvm")
-//    implementation("ch.qos.logback:logback-classic:$logback_version")
+    implementation("ch.qos.logback:logback-classic:$logback_version")
     testImplementation("io.ktor:ktor-server-tests-jvm")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version")
     implementation(kotlin("stdlib-jdk8"))
@@ -81,6 +81,12 @@ buildscript {
 configure<PublishingExtension> {
 }
 
+tasks.jar {
+    enabled = true
+    // Remove `plain` postfix from jar file name
+    archiveClassifier.set("")
+}
+
 publishing {
     repositories {
         maven {
@@ -100,6 +106,8 @@ publishing {
     }
     publications {
         create<MavenPublication>("mavenJava") {
+            artifact(tasks["jar"])
+
             artifactId = "ktor-shop"
             groupId = "ru.perm.v.ktor_shop"
         }
