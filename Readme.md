@@ -1,8 +1,15 @@
 Использование [io.ktor](https://ktor.io/).
 
 ````shell
-$ echo $JAVA_HOME
-/usr/lib/jvm/openjdk-17/
+export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+````
+
+````shell
+echo $JAVA_HOME
+````
+
+````text
+/usr/lib/jvm/java-11-openjdk-amd64
 ````
 
 Генерация заготовки проекта:<br/>
