@@ -32,6 +32,7 @@ class ApplicationTest {
     fun testEmptyUser() = testApplication {
         application {
             configureShopRouting()
+            configureUserRouting()
         }
         client.get("/user").apply {
             assertEquals(HttpStatusCode.OK, status)

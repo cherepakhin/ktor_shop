@@ -7,6 +7,7 @@ import io.ktor.server.config.*
 import io.ktor.server.testing.*
 import junit.framework.TestCase.assertEquals
 import ru.perm.v.ktor.plugins.configureShopRouting
+import ru.perm.v.ktor.plugins.configureUserRouting
 import kotlin.test.Test
 
 class RoutingTest {
@@ -48,6 +49,7 @@ class RoutingTest {
     fun testUrlUser() = testApplication {
         application {
             configureShopRouting()
+            configureUserRouting()
         }
         environment {
             config = MapApplicationConfig(
