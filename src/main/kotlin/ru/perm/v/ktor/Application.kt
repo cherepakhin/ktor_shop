@@ -7,6 +7,7 @@ import ru.perm.v.ktor.plugins.configureProductRouting
 import ru.perm.v.ktor.plugins.configureSerialization
 import ru.perm.v.ktor.plugins.configureShopRouting
 import ru.perm.v.ktor.plugins.configureTemplating
+import ru.perm.v.ktor.plugins.configureUserRouting
 
 fun main() {
     embeddedServer(Netty, port = 9080, host = "0.0.0.0", module = Application::module)
@@ -21,5 +22,6 @@ fun Application.module() {
     configureTemplating()
     configureSerialization()
     configureShopRouting()
+    configureUserRouting()
     configureProductRouting()
 }
