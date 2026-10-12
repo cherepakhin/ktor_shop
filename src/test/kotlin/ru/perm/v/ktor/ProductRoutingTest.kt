@@ -29,7 +29,7 @@ class ProductRoutingTest {
 
         assertEquals(HttpStatusCode.OK, response.status)
         val body = response.bodyAsText()
-        assertEquals(true, body.contains("ProductDto"))
+        assertEquals(true, body.contains("Product"))
         assertEquals(true, body.contains("name1"))
         assertEquals(true, body.contains("name2"))
     }

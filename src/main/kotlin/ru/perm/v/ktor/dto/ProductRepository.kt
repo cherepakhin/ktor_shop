@@ -1,14 +1,19 @@
 package ru.perm.v.ktor.dto
 
-class ProductRepository {
-    private val products = listOf(ProductDto(1, "name1"), ProductDto(2, "name2"))
+import ru.perm.v.ktor.entity.Product
 
-    fun getAll(): List<ProductDto> {
+class ProductRepository {
+    private val products = listOf(
+        Product(1, "name1", "Product 1", 10.0),
+        Product(2, "name2", "Product 2", 20.0)
+    )
+
+    fun getAll(): List<Product> {
         return products
     }
 
-    fun getById(id: Long): ProductDto {
+    fun getById(id: Long): Product {
         return products.find { it.id == id }
-            ?: ProductDto(id, "name$id")
+            ?: Product(id, "name$id", "", 0.0)
     }
 }

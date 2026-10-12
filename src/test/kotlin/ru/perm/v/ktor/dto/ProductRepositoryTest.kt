@@ -2,6 +2,7 @@ package ru.perm.v.ktor.dto
 
 import kotlin.test.assertEquals
 import kotlin.test.Test
+import ru.perm.v.ktor.entity.Product
 
 class ProductRepositoryTest {
     private val repository = ProductRepository()
