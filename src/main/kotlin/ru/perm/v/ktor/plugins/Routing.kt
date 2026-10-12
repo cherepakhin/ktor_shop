@@ -9,6 +9,7 @@ import java.lang.String.format
 import java.util.logging.Logger
 
 fun Application.configureShopRouting() {
+    val products = listOf(ProductDto(1, "name1"), ProductDto( 2, "name2"))
     routing {
         get("/echo/{message}") {
             val message = call.parameters["message"]
@@ -34,6 +35,9 @@ fun Application.configureShopRouting() {
                 call.respondText("Empty login")
             else
                 call.respond("Hello, " + call.parameters["login"])
+        }
+        get("/product/") {
+            call.respondText(listOf(products).toString())
         }
         get("/product/{id}") {
             val paramId = call.parameters["id"]
