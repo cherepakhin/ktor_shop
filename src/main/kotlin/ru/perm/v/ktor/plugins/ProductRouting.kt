@@ -5,6 +5,7 @@ import io.ktor.server.application.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import ru.perm.v.ktor.dto.ProductRepository
+import ru.perm.v.ktor.entity.Product
 
 fun Application.configureProductRouting() {
     val repository = ProductRepository()
