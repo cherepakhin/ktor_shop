@@ -79,6 +79,30 @@ Unit-tests:
 ./gradlew test
 ````
 
+### Покрытие кода (JaCoCo)
+
+Генерация отчёта о покрытии тестами:
+
+````shell
+./gradlew jacocoTestReport
+````
+
+Отчёт доступен в:
+- **HTML:** `build/reports/jacoco/test/html/index.html`
+- **XML:** `build/reports/jacoco/test/test.xml`
+
+Проверка порога покрытия (минимум 20% по строкам):
+
+````shell
+./gradlew jacocoTestCoverageVerification
+````
+
+Запустить тесты + отчёт + проверку порога:
+
+````shell
+./gradlew check
+````
+
 Перезапустить все тесты:
 
 ````shell

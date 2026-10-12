@@ -3,6 +3,7 @@ package ru.perm.v.ktor
 import org.junit.Test
 import kotlin.test.assertEquals
 
+// for example Pair
 class PairsTest {
     open class MyPairs(vararg values: kotlin.Pair<kotlin.Int, kotlin.String>) {
         open val vals = values.asList()

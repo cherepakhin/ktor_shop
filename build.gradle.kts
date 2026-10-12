@@ -14,6 +14,7 @@ plugins {
     java
     idea
     application
+    jacoco
 }
 
 application {
@@ -115,6 +116,39 @@ publishing {
 
 kotlin {
     jvmToolchain(11)
+}
+
+jacoco {
+    toolVersion = "0.8.11"
+}
+
+tasks.test {
+    jacoco {
+        enabled = true
+    }
+}
+
+tasks.check {
+    dependsOn(tasks.jacocoTestReport)
+}
+
+tasks.jacocoTestReport {
+    reports {
+        xml.required.set(true)
+        html.required.set(true)
+    }
+}
+
+tasks.jacocoTestCoverageVerification {
+    violationRules {
+        rule {
+            limit {
+                counter = "LINE"
+                value = "COVEREDRATIO"
+                minimum = BigDecimal("0.20")
+            }
+        }
+    }
 }
 
 tasks {
