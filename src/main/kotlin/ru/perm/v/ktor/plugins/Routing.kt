@@ -5,11 +5,12 @@ import io.ktor.server.application.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import ru.perm.v.ktor.dto.ProductDto
+import ru.perm.v.ktor.dto.ProductRepository
 import java.lang.String.format
 import java.util.logging.Logger
 
 fun Application.configureShopRouting() {
-    val products = listOf(ProductDto(1, "name1"), ProductDto( 2, "name2"))
+    val repository = ProductRepository()
     routing {
         get("/echo/{message}") {
             val message = call.parameters["message"]
@@ -37,12 +38,12 @@ fun Application.configureShopRouting() {
                 call.respond("Hello, " + call.parameters["login"])
         }
         get("/product/") {
-            call.respondText(listOf(products).toString())
+            call.respondText(repository.getAll().toString())
         }
         get("/product/{id}") {
             val paramId = call.parameters["id"]
             val id = (paramId ?: "-1").toLong()
-            call.respond(ProductDto(id, "name$id"))
+            call.respond(repository.getById(id))
         }
     }
 }
