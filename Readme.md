@@ -26,9 +26,13 @@ echo $JAVA_HOME
 ````
 или (после ./gradlew build)
 
+
 ````shell
 java -jar build/libs/ktor_shop.jar
 ````
+(Java 11 см.выше)
+
+__Порт 9080.__
 
 Ручные тесты:<br/>
 
@@ -101,7 +105,7 @@ Publish to Nexus:<br/>
 ./gradlew publish
 ````
 
-Версия будет установлена из build.gradle.kts version = "????".
+Версия будет установлена из build.gradle.kts version.
 
 Показать git репозитории:
 
