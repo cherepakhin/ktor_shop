@@ -3,6 +3,7 @@ package ru.perm.v.ktor
 import io.ktor.server.application.*
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
+import ru.perm.v.ktor.plugins.configureProductRouting
 import ru.perm.v.ktor.plugins.configureSerialization
 import ru.perm.v.ktor.plugins.configureShopRouting
 import ru.perm.v.ktor.plugins.configureTemplating
@@ -20,4 +21,5 @@ fun Application.module() {
     configureTemplating()
     configureSerialization()
     configureShopRouting()
+    configureProductRouting()
 }
