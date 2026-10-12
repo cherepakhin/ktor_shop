@@ -7,23 +7,28 @@ import io.ktor.server.plugins.contentnegotiation.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import ru.perm.v.ktor.dto.ProductDto
+import java.util.logging.Logger
 
 fun Application.configureSerialization() {
-    logStart()
     install(ContentNegotiation) {
         jackson {
             enable(SerializationFeature.INDENT_OUTPUT)
         }
     }
+
     routing {
         get("/json/jackson") {
-            call.respond(mapOf("hello" to "world"))
+            Logger.getGlobal().info("JSON JACKSON")
+            call.respond(mapOf("message" to "Jackson JSON"))
         }
+
         get("/json/product") {
-            call.respond(ProductDto(1L, "Name1"))
+            val product = ProductDto(1, "TestProduct")
+            call.respond(product)
         }
     }
 }
+
 
 fun logStart() {
     println("logStart")
